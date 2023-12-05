@@ -54,13 +54,14 @@ DB_CONNECTION_STRING_TEST=mongodb+srv://user:password@db.84lsprh.mongodb.net/tes
 
 ## Express Router and Routes
 
-| Route                | HTTP Verb | Description             |
-| -------------------- | --------- | ----------------------- |
-| /api/healthcheck     | GET       | Healthcheck             |
-| /api/todo            | GET       | List all todos          |
-| /api/todo            | POST      | Create a todo           |
-| /api/todo/update/:id | PUT       | Update todo information |
-| /api/todo/delete/:id | DELETE    | Delete a todo           |
+| Route                | HTTP Verb | Description                |
+| -------------------- | --------- | -------------------------- |
+| /api/healthcheck     | GET       | Healthcheck                |
+| /api/todo            | GET       | List all todos             |
+| /api/todo            | POST      | Create a todo              |
+| /api/todo/update/:id | PUT       | Update todo information    |
+| /api/todo/delete/:id | DELETE    | Delete a todo              |
+| /api/todo/delete     | DELETE    | Remove all completed todos |
 
 ### Basic example **Create Todo** `/api/todo`:
 

@@ -4,7 +4,8 @@ import {
   createTodo,
   getAllTodos,
   updateTodo,
-  deleteTodo
+  deleteTodo,
+  clearCompletedTodos
 } from './todo.services';
 
 export const createTodoHandler = async (req: Request, res: Response): Promise<void> => {
@@ -41,6 +42,16 @@ export const deleteTodoHandler = async (req: Request, res: Response): Promise<vo
     const { id } = req.params;
     const todo = await deleteTodo(id);
     res.status(200).json({ message: 'Todo deleted successfully', data: todo });
+  } catch (error: any) {
+    res.status(400).json({ message: 'Error deleting todo', error: error.message });
+  }
+};
+
+export const clearCompletedTodosHandler = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { completedIds } = req.body;
+    const todo = await clearCompletedTodos(completedIds);
+    res.status(200).json({ message: 'Todos clear successfully', data: todo });
   } catch (error: any) {
     res.status(400).json({ message: 'Error deleting todo', error: error.message });
   }
