@@ -94,4 +94,18 @@ describe('Todo controller', () => {
             expect(response.body.data.title).toEqual(title);
         }));
     });
+    describe('DELETE /api/todo/delete', () => {
+        test('Should return status 200', () => __awaiter(void 0, void 0, void 0, function* () {
+            const { _id: id1 } = yield (0, testUtils_1.todoGenerator)(request);
+            const { _id: id2 } = yield (0, testUtils_1.todoGenerator)(request);
+            const { _id: id3 } = yield (0, testUtils_1.todoGenerator)(request);
+            const data = { completedIds: [id1, id2, id3] };
+            const response = yield request.delete('/api/todo/delete').send(data);
+            expect(response.status).toBe(200);
+            expect(response.body).toHaveProperty('message');
+            expect(response.body.message).toEqual('Todos clear successfully');
+            expect(response.body).toHaveProperty('data');
+            expect(response.body.data.deletedCount).toEqual(3);
+        }));
+    });
 });

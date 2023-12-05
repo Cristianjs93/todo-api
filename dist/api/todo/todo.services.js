@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTodo = exports.updateTodo = exports.getAllTodos = exports.createTodo = void 0;
+exports.clearCompletedTodos = exports.deleteTodo = exports.updateTodo = exports.getAllTodos = exports.createTodo = void 0;
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 const todo_model_1 = __importDefault(require("./todo.model"));
 const errorHandler_1 = require("../../utils/errorHandler");
@@ -70,3 +70,16 @@ const deleteTodo = (_id) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.deleteTodo = deleteTodo;
+const clearCompletedTodos = (completedIds) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const todos = yield todo_model_1.default.deleteMany({ _id: { $in: completedIds } });
+        if (todos === null) {
+            throw new Error('Todo not found');
+        }
+        return todos;
+    }
+    catch (error) {
+        throw new Error(error.message);
+    }
+});
+exports.clearCompletedTodos = clearCompletedTodos;

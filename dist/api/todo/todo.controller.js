@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTodoHandler = exports.updateTodoHandler = exports.getAllTodosHandler = exports.createTodoHandler = void 0;
+exports.clearCompletedTodosHandler = exports.deleteTodoHandler = exports.updateTodoHandler = exports.getAllTodosHandler = exports.createTodoHandler = void 0;
 const todo_services_1 = require("./todo.services");
 const createTodoHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -54,3 +54,14 @@ const deleteTodoHandler = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.deleteTodoHandler = deleteTodoHandler;
+const clearCompletedTodosHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { completedIds } = req.body;
+        const todo = yield (0, todo_services_1.clearCompletedTodos)(completedIds);
+        res.status(200).json({ message: 'Todos clear successfully', data: todo });
+    }
+    catch (error) {
+        res.status(400).json({ message: 'Error deleting todo', error: error.message });
+    }
+});
+exports.clearCompletedTodosHandler = clearCompletedTodosHandler;

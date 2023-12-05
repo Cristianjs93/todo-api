@@ -63,3 +63,17 @@ export const deleteTodo = async (_id: string): Promise<TodoDocument> => {
     throw new Error(error.message);
   }
 };
+
+export const clearCompletedTodos = async (completedIds: any): Promise<any> => {
+  try {
+    const todos = await TodoModel.deleteMany({ _id: { $in: completedIds } });
+
+    if (todos === null) {
+      throw new Error('Todo not found');
+    }
+
+    return todos;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};

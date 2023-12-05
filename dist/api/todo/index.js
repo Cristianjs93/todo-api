@@ -7,4 +7,5 @@ router.post('/', todo_controller_1.createTodoHandler);
 router.get('/', todo_controller_1.getAllTodosHandler);
 router.put('/update/:id', todo_controller_1.updateTodoHandler);
 router.delete('/delete/:id', todo_controller_1.deleteTodoHandler);
+router.delete('/delete', todo_controller_1.clearCompletedTodosHandler);
 exports.default = router;
