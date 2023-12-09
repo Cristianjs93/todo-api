@@ -50,8 +50,8 @@ export const deleteTodoHandler = async (req: Request, res: Response): Promise<vo
 export const clearCompletedTodosHandler = async (req: Request, res: Response): Promise<void> => {
   try {
     const { completedIds } = req.body;
-    const todo = await clearCompletedTodos(completedIds);
-    res.status(200).json({ message: 'Todos clear successfully', data: todo });
+    const todos = await clearCompletedTodos(completedIds);
+    res.status(200).json({ message: 'Todos clear successfully', data: { completedIds, ...todos } });
   } catch (error: any) {
     res.status(400).json({ message: 'Error deleting todo', error: error.message });
   }

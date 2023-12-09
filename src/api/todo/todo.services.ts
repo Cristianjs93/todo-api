@@ -64,7 +64,7 @@ export const deleteTodo = async (_id: string): Promise<TodoDocument> => {
   }
 };
 
-export const clearCompletedTodos = async (completedIds: any): Promise<any> => {
+export const clearCompletedTodos = async (completedIds: string[]): Promise<any> => {
   try {
     const todos = await TodoModel.deleteMany({ _id: { $in: completedIds } });
 
